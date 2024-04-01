@@ -1,0 +1,598 @@
+loginDTO.java
+
+package com.sabedor.ic.api;
+
+import javax.validation.constraints.AssertTrue;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
+public class loginDTO {
+	
+	@NotBlank(message = "* User Name Required")
+	@Size(min = 5, max = 15,message = "User Name Must Be Between 5 to 15 chars")
+	private String un;
+	
+	@NotBlank(message = "* Password Required")
+	@Size(min=5,max =15,message = "Password Must Be Between 6 to 15 chars" )
+	private String ps;
+	
+	@AssertTrue(message = "Check and Agree To Terms And Conditions")
+	private boolean TermsandConditions;
+	
+	
+	public String getUn() {
+		return un;
+	}
+	public void setUn(String un) {
+		this.un = un;
+	}
+	public String getPs() {
+		return ps;
+	}
+	public void setPs(String ps) {
+		this.ps = ps;
+	}
+	
+	public boolean isTermsandConditions() {
+		return TermsandConditions;
+	}
+	public void setTermsandConditions(boolean termsandConditions) {
+		TermsandConditions = termsandConditions;
+	}
+	
+	
+}
+
+-------------------------------------------------------------------------------------------
+
+RegisterDTO.java
+
+package com.sabedor.ic.api;
+
+import javax.validation.constraints.Digits;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
+
+import org.hibernate.validator.constraints.Range;
+import org.hibernate.validator.constraints.CreditCardNumber;
+
+@SuppressWarnings("unused")
+public class RegisterDTO {
+
+	
+	@NotBlank(message = "* User Name Required")
+	@Size(min = 8,message = "User Name can't be less than 8 chars")
+	@Size(max = 20,message = "User Name can't be more than 20 chars")
+	private String un;
+	
+	@NotBlank(message = "* Password Required")
+	@Size(min=6,max =15,message = "Password Must Be Between 6 to 15 chars")
+//	@Pattern(regexp="^(?=. *[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=])(?=\\S+$).+$",message="password must "
+//		    + "contain at least one digit, one lower case, one upper case, and one special char, "
+//			+ "and doesn't contain spaces")
+	private String ps;
+	
+	@NotBlank(message = "* Employee Name Required")
+	private String empname;
+	
+	@NotBlank(message = "* email Required")
+	@Email(message = "Enter Valid Email")
+	private String email;
+	
+	@NotBlank(message = "* Mobile Required")
+	@Digits(message = "Mobile Number Should Be 10 Digits" , fraction = 0, integer = 10)
+	private String mobile;
+	
+	@NotBlank(message = "* City Required")
+	private String city;
+	
+	@Range(min=20 ,max = 50, message= "* Employee Age Must grater than 20 and Less than 51")
+	private int age;
+	
+	public String getUn() {
+		return un;
+	}
+	public void setUn(String un) {
+		this.un = un;
+	}
+	public String getPs() {
+		return ps;
+	}
+	public void setPs(String ps) {
+		this.ps = ps;
+	}
+	public String getEmpname() {
+		return empname;
+	}
+	public void setEmpname(String empname) {
+		this.empname = empname;
+	}
+	public String getEmail() {
+		return email;
+	}
+	public void setEmail(String email) {
+		this.email = email;
+	}
+	public String getMobile() {
+		return mobile;
+	}
+	public void setMobile(String mobile) {
+		this.mobile = mobile;
+	}
+	public String getCity() {
+		return city;
+	}
+	public void setCity(String city) {
+		this.city = city;
+	}
+	public int getAge() {
+		return age;
+	}
+	public void setAge(int age) {
+		this.age = age;
+	}
+	
+		
+}
+
+----------------------------------------------------------------------------------------
+
+demoAppconfig.java
+
+package com.sabedor.ic.config;
+
+
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.web.servlet.config.annotation.EnableWebMvc;
+import org.springframework.web.servlet.view.InternalResourceViewResolver;
+
+
+@EnableWebMvc
+@Configuration
+@ComponentScan(basePackages ="com.sabedor.ic.controller")
+public class demoAppconfig {
+
+	@Bean
+	public InternalResourceViewResolver viewResolver()
+	{
+		InternalResourceViewResolver viewResolver=new InternalResourceViewResolver();
+		viewResolver.setPrefix("/WEB-INF/view/");
+		viewResolver.setSuffix(".jsp");
+		
+		return viewResolver;
+	}
+	
+}
+
+------------------------------------------------------------------------------------------
+
+LCAppInitilizer.java
+
+package com.sabedor.ic.config;
+
+import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
+
+public class LCAppInitlizer extends AbstractAnnotationConfigDispatcherServletInitializer {
+
+	@Override
+	protected Class<?>[] getRootConfigClasses() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@SuppressWarnings("rawtypes")
+	@Override
+	protected Class<?>[] getServletConfigClasses() {
+		// TODO Auto-generated method stub
+		Class arr[]= {demoAppconfig.class};
+		return arr;
+	}
+
+	@Override
+	protected String[] getServletMappings() {
+		// TODO Auto-generated method stub
+		// TODO Auto-generated method stub
+				String arr[] = {"/"};                          //---> when user enters '/' then first login view will get open
+				
+				return arr;
+	}
+
+}
+
+-------------------------------------------------------------------------------------------
+
+HomeController.java
+
+package com.sabedor.ic.controller;
+
+import javax.validation.Valid;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+import com.SabedorDAO.config.LoginDAO;
+import com.SabedorDAO.config.RegisterDAO;
+import com.sabedor.ic.api.RegisterDTO;
+import com.sabedor.ic.api.loginDTO;
+
+@Controller
+public class HomeController {
+
+	
+	@RequestMapping("/")
+	public String showLogin(Model model )
+	{
+		loginDTO obj=new loginDTO();
+		model.addAttribute("userinfo",obj);
+		return "login";
+	}
+	
+	@RequestMapping("/process-menu")
+	public String showMenu(@Valid @ModelAttribute("userinfo") loginDTO obj, BindingResult result) throws Exception
+	{
+		
+		 
+		  if(result.hasErrors())
+		  {
+			  return "login";  
+		  }
+		  else
+		  {
+			 LoginDAO obj2=new LoginDAO();
+			 
+			/* loginDTO obj1=new loginDTO();
+			 obj1.setUn(obj.getUn());
+			 obj1.setPs(obj.getPs());*/
+			 
+			   if(obj2.CheckLogin(obj))
+			   {
+				   return "Menu";
+			   }
+			   else
+			   {
+				
+				 return "login";
+			   }
+			 
+			 
+		  }
+	}
+		
+	@SuppressWarnings("unused")
+	@RequestMapping("/process-register")
+	public String showRegister(@Valid @ModelAttribute("reginfo") RegisterDTO obj, BindingResult result) throws Exception
+	{
+		 RegisterDAO obj1=new RegisterDAO();
+		
+		  if(result.hasErrors())
+		  {
+			  return "register";  
+		  }
+		  else
+		  {
+			  obj1.RegisterUser(obj);
+			  return "success";
+		  }
+		
+	}
+	
+	@RequestMapping("/showregister")
+	public String showregister(Model model)
+	{
+		RegisterDTO obj=new RegisterDTO();
+		model.addAttribute("reginfo",obj);
+		return "register";
+	}
+}
+
+-----------------------------------------------------------------------------------------
+
+loginDAO.java
+
+package com.SabedorDAO.config;
+import java.sql.*;
+
+import com.sabedor.ic.api.RegisterDTO;
+import com.sabedor.ic.api.loginDTO;
+
+@SuppressWarnings("unused")
+public class LoginDAO {
+	
+	
+        @SuppressWarnings("unused")
+		public boolean CheckLogin(loginDTO obj) throws Exception  {
+		
+    	try
+    	{
+    	 Class.forName("com.mysql.cj.jdbc.Driver");
+	     Connection conn=DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/stud_db","root","Kunal123");
+	     Statement stment = conn.createStatement();
+
+		    String qur = "SELECT * FROM registeruser WHERE UserName=? and UserPass=?";
+		        
+		        PreparedStatement preparedStatement = conn.prepareStatement(qur);
+		        preparedStatement.setString(1, obj.getUn());
+		        preparedStatement.setString(2, obj.getPs());
+		       
+		        ResultSet Rs =preparedStatement.executeQuery(); 
+		        
+		        if(Rs.next()==false)
+		        	return false;
+		        else
+		        	return true;
+	     
+    	}
+    	catch (Exception e) {
+			throw e;
+		}
+    	
+	}
+	
+
+}
+
+-------------------------------------------------------------------------------
+
+RegisterDAO.java
+
+-------------------->  Data will be stored in database  <-----------------
+
+package com.SabedorDAO.config;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import java.sql.Statement;
+
+import com.sabedor.ic.api.RegisterDTO;
+
+@SuppressWarnings("unused")
+public class RegisterDAO {
+	
+	
+	
+    @SuppressWarnings("unused")
+	public void RegisterUser(RegisterDTO obj) throws Exception  {
+		
+    	try
+    	{
+    	 Class.forName("com.mysql.cj.jdbc.Driver");
+	     Connection conn=DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/stud_db","root","Kunal123");
+	     Statement stment = conn.createStatement();
+
+		    String qur = "INSERT INTO registeruser(UserName,UserPass,EmployeeName,Email,Mobile,City,Age) VALUES(?,?,?,?,?,?,?)";
+		        
+		        PreparedStatement preparedStatement = conn.prepareStatement(qur);
+		        preparedStatement.setString(1, obj.getUn());
+		        preparedStatement.setString(2, obj.getPs());
+		        preparedStatement.setString(3, obj.getEmpname());
+		        preparedStatement.setString(4, obj.getEmail());
+		        preparedStatement.setString(5, obj.getMobile());
+		        preparedStatement.setString(6, obj.getCity());
+		        preparedStatement.setInt(7, obj.getAge());
+		        int i=preparedStatement.executeUpdate(); 
+	     
+    	}
+    	catch (Exception e) {
+			throw e;
+		}
+    	
+	}
+	
+	
+}
+
+--------------------------------------------------------------------------------------
+
+login.jsp
+
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %> 
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+<style type="text/css">
+  .bt
+  {
+    color: red;
+    position: fixed;
+    text-align: left;
+    margin-left: 20px;
+  }
+</style>
+</head>
+<body>
+   <form:form action="process-menu" modelAttribute="userinfo">
+   
+      <p align="center">User Name : <form:input path="un" id="un"/>
+                                    <form:errors path="un" id="un" cssClass="bt" />
+      </p>
+      <p align="center">User Pass:  <form:password path="ps" />
+                                    <form:errors path="ps" cssClass="bt" />
+      </p>
+              <p align="center">    <input type="submit" name="login" value="Login" >
+                                    <a href="showregister">Register</a>
+      </p>
+           
+       <p align="center">Terms & Conditions :       <form:checkbox path="TermsandConditions"/>  
+                                                    <form:errors path="TermsandConditions" cssClass="bt"/>
+       </p>
+   </form:form>
+</body>
+</html>
+
+----------------------------------------------------------------------------------------
+
+Menu.jsp
+
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+  <h2>Welcome User...</h2>
+  
+ <p>Welcome :  ${userinfo.un} </p>
+  
+</body>
+</html>
+
+----------------------------------------------------------------------------------------
+
+register.jsp
+
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %> 
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+   <style type="text/css">
+   .pt
+   {
+   color: red;
+   position: fixed;
+   text-align: left;
+   margin-left: 20px;
+   }
+   
+   .tx
+   {
+      position: fixed;
+      margin-left: 30px;
+   }
+   </style>
+</head>
+<body>
+    <form:form action="process-register" modelAttribute="reginfo">
+      <p align="center">User Name : <form:input path="un" id="un"/>
+                                    <form:errors path="un" id="un" cssClass="pt" />
+      </p>
+      <p align="center">User Pass:  <form:password path="ps" />
+                                    <form:errors path="ps" cssClass="pt" />
+      </p>
+      <p align="center">Employee Name: <form:input path="empname" />
+                                    <form:errors path="empname" cssClass="pt" />
+      </p>
+      <p align="center">Email:      <form:input path="email" />
+                                    <form:errors path="email" cssClass="pt" />
+      </p>
+      <p align="center">Mobile:     <form:input path="mobile" />
+                                    <form:errors path="mobile" cssClass="pt" />
+      </p>
+      <p align="center">City:       <form:input path="city" />
+                                    <form:errors path="city" cssClass="pt" />
+      </p>
+      <p align="center">Age:        <form:input path="age" />
+                                    <form:errors path="age" cssClass="pt" />
+      </p>
+      <p align="center">     <input type="submit" name="login" value="Register"> </p>
+     </form:form>
+</body>
+</html>
+
+---------------------------------------------------------------------------------------
+
+success.jsp
+
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+     <h1>Employee Registered Successfully....</h1>
+   
+   <h3>User Name : ${reginfo.un}</h3>
+   <h3>Employee Name : ${reginfo.empname}</h3>
+   <h3>Email   : ${reginfo.email}</h3>
+   <h3>Mobile : ${reginfo.mobile}</h3>
+   <h3>City : ${reginfo.city}</h3>
+   <h3>Age : ${reginfo.age}</h3>
+</body>
+</html>
+
+----------------------------------------------------------------------------------------
+
+pom.xml
+
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.springtest.demo</groupId>
+  <artifactId>com.validation.demo</artifactId>
+  <packaging>war</packaging>
+  <version>0.0.1-SNAPSHOT</version>
+  <name>com.validation.demo Maven Webapp</name>
+  <url>http://maven.apache.org</url>
+  
+   <properties>
+    <failOnMissingWebXml>false</failOnMissingWebXml>
+    <maven.compiler.source>1.8</maven.compiler.source>
+    <maven.compiler.target>1.8</maven.compiler.target> 
+   </properties>
+  
+   <dependencies>
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>3.8.1</version>
+      <scope>test</scope>
+    </dependency>
+        
+    <dependency>
+      <groupId>javax.servlet</groupId>
+      <artifactId>javax.servlet-api</artifactId>
+      <version>4.0.1</version>
+      <scope>provided</scope>
+   </dependency>
+    
+   <dependency>
+    <groupId>org.springframework</groupId>
+    <artifactId>spring-webmvc</artifactId>
+    <version>5.3.27</version>
+   </dependency>
+    
+    <dependency>
+      <groupId>javax.validation</groupId>
+      <artifactId>validation-api</artifactId>
+      <version>2.0.1.Final</version>
+    </dependency>
+    
+    <dependency>
+    <groupId>org.hibernate</groupId>
+    <artifactId>hibernate-validator</artifactId>
+    <version>6.0.0.Final</version>
+    </dependency>
+    
+   <dependency>
+        <groupId>mysql</groupId>
+        <artifactId>mysql-connector-java</artifactId>
+        <version>8.0.31</version>
+    </dependency>
+
+  </dependencies>
+  <build>
+    <finalName>com.validation.demo</finalName>
+   </build>
+   </project>
+
+--------------------------------------------------------------------------------------

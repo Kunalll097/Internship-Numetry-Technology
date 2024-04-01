@@ -1,0 +1,388 @@
+studentDTO.java
+
+package com.sabedor.ic.api;
+
+public class studentDTO {
+
+	private String name;
+	private String mobile;
+	private String email;
+	private String country;
+	private String[] hobby;
+	private String gender;
+	
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	public String getMobile() {
+		return mobile;
+	}
+	public void setMobile(String mobile) {
+		this.mobile = mobile;
+	}
+	public String getEmail() {
+		return email;
+	}
+	public void setEmail(String email) {
+		this.email = email;
+	}
+	public String getCountry() {
+		return country;
+	}
+	public void setCountry(String country) {
+		this.country = country;
+	}
+	public String[] getHobby() {
+		return hobby;
+	}
+	public void setHobby(String[] hobby) {
+		this.hobby = hobby;
+	}
+	public String getGender() {
+		return gender;
+	}
+	public void setGender(String gender) {
+		this.gender = gender;
+	}
+	
+}
+
+-----------------------------------------------------------------------------------------------------------------------------
+
+userloginDTO.java
+
+package com.sabedor.ic.api;
+
+public class studentDTO {
+
+	private String name;
+	private String mobile;
+	private String email;
+	private String country;
+	private String[] hobby;
+	private String gender;
+	
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	public String getMobile() {
+		return mobile;
+	}
+	public void setMobile(String mobile) {
+		this.mobile = mobile;
+	}
+	public String getEmail() {
+		return email;
+	}
+	public void setEmail(String email) {
+		this.email = email;
+	}
+	public String getCountry() {
+		return country;
+	}
+	public void setCountry(String country) {
+		this.country = country;
+	}
+	public String[] getHobby() {
+		return hobby;
+	}
+	public void setHobby(String[] hobby) {
+		this.hobby = hobby;
+	}
+	public String getGender() {
+		return gender;
+	}
+	public void setGender(String gender) {
+		this.gender = gender;
+	}
+	
+}
+
+
+---------------------------------------------------------------------------------------
+
+demoAppconfig.java
+
+package com.sabedor.ic.config;
+
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.web.servlet.config.annotation.EnableWebMvc;
+import org.springframework.web.servlet.view.InternalResourceViewResolver;
+
+
+@EnableWebMvc
+@Configuration
+@ComponentScan(basePackages ="com.sabedor.ic.controller")
+public class demoAppconfig {
+	
+	@Bean
+	public InternalResourceViewResolver viewResolver()
+	{
+		InternalResourceViewResolver viewResolver=new InternalResourceViewResolver();
+		viewResolver.setPrefix("/WEB-INF/view/");
+		viewResolver.setSuffix(".jsp");
+		return viewResolver;
+	}
+
+}
+
+-------------------------------------------------------------------------------------
+
+LCAppconfig.java
+
+package com.sabedor.ic.config;
+
+import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
+
+public class LCAppInilizer extends AbstractAnnotationConfigDispatcherServletInitializer {
+
+	@Override
+	protected Class<?>[] getRootConfigClasses() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	protected Class<?>[] getServletConfigClasses() {
+		// TODO Auto-generated method stub
+		@SuppressWarnings("rawtypes")
+		Class arr[]= {demoAppconfig.class};
+		return arr;
+	}
+
+	@Override
+	protected String[] getServletMappings() {
+		// TODO Auto-generated method stub
+		String arr[] = {"/"};
+		return arr;
+	}
+
+}
+
+--------------------------------------------------------------------------------------
+
+HomeController.java
+
+package com.sabedor.ic.controller;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+import com.sabedor.ic.api.studentDTO;
+import com.sabedor.ic.api.userloginDTO;
+
+@Controller
+public class HomeController {
+
+	@RequestMapping("/")
+	public String Showlogin(userloginDTO obj, Model model)
+	{
+		model.addAttribute("userinfo",obj);
+		return"login";
+	}
+	@RequestMapping("/process-menu")
+	public String showmenu()
+	{
+		return"menu";
+	}
+	@RequestMapping("/process-student")
+	public String RegisterStudent(studentDTO obj, Model model)
+	{
+		model.addAttribute("studinfo",obj);
+		return"Student";
+	}
+	@RequestMapping("/disp-student")
+	public String DispStudent(studentDTO obj, Model model)
+	{
+		model.addAttribute("studinfo",obj);
+		return"Dispstudent";
+	}
+	
+	
+}
+
+--------------------------------------------------------------------------------------
+
+view
+
+Dispstudent.jsp
+
+<%@ taglib prefix = "c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+     <h3>Student Information...</h3>
+     
+     <p> Student Name    : ${studinfo.name} </p>
+     <p> Student Mobile  : ${studinfo.mobile}</p>
+     <p> Student Email   : ${studinfo.email}</p>
+     <p> Student Country : ${studinfo.country}</p>
+     <p> Student Hobby :
+     <c:forEach var="x" items="${studinfo.hobby}">
+         ${x}
+         </c:forEach>
+     <br/>
+     </p>
+     <p>Gender           : ${studinfo.gender}</p>
+</body>
+</html>
+
+--------------------------------------------------------------------------------------
+
+login.jsp
+
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+    <form:form action="process-menu" modelAttribute="userinfo">
+    
+   <h3>User Login</h3> 
+      <p align="center"> User Name : <form:input path="un" /></p>
+      <p align="center">User password : <form:input path="ps" /></p>
+       <p align="center"><input type="submit" name="sv" value="Login" ></p>
+    
+    </form:form>
+</body>
+</html>
+
+---------------------------------------------------------------------------------------
+
+menu.jsp
+
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+    <form:form>
+    
+     <a href="process-student">Add Student</a>
+    
+    </form:form>
+</body>
+</html>
+
+---------------------------------------------------------------------------------------
+
+Student.jsp
+
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+    <form:form action="disp-student" modelAttribute="studinfo">
+    
+    Name   : <form:input path="name"/><br/>
+    Mobile : <form:input path="mobile"/><br/>
+    Email  : <form:input path="email"/><br/>
+    Country: <form:select path="country">
+                  <form:option value="India" label="India"></form:option>
+                  <form:option value="USA" label="usa"></form:option>
+                  <form:option value="Japan" label="Jpn"></form:option>
+                  <form:option value="United kingdom" label="Uk"></form:option>
+                  </form:select>
+                  <br/>
+    Hobbies: 
+            Cricket  : <form:checkbox path="hobby" value="Cricket"></form:checkbox>
+            Music    : <form:checkbox path="hobby" value="Music"></form:checkbox>
+            Dancing  : <form:checkbox path="hobby" value="Dancing"></form:checkbox>
+              <br/>
+    Gender :
+           Male :<form:radiobutton path="gender" value="Male"></form:radiobutton>
+           Female :<form:radiobutton path="gender" value="Female"></form:radiobutton>
+           <br/>
+           <input type="submit" name="save" value="save">                       
+    </form:form>
+</body>
+</html>
+
+---------------------------------------------------------------------------------------
+
+target
+
+pom.xml
+
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.springtest.demo</groupId>
+  <artifactId>com.studentdemo.test</artifactId>
+  <packaging>war</packaging>
+  <version>0.0.1-SNAPSHOT</version>
+  <name>com.studentdemo.test Maven Webapp</name>
+  <url>http://maven.apache.org</url>
+  
+  <properties>
+    <failOnMissingWebXml>false</failOnMissingWebXml>
+    <maven.compiler.source>1.8</maven.compiler.source>
+    <maven.compiler.target>1.8</maven.compiler.target> 
+  </properties>
+  
+  <dependencies>
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>3.8.1</version>
+      <scope>test</scope>
+    </dependency>
+    
+    <dependency>
+		    <groupId>jstl</groupId>
+		    <artifactId>jstl</artifactId>
+		    <version>1.2</version>
+		</dependency>
+		
+    <dependency>
+      <groupId>javax.servlet</groupId>
+      <artifactId>javax.servlet-api</artifactId>
+      <version>4.0.1</version>
+      <scope>provided</scope>
+   </dependency>
+    
+   <dependency>
+    <groupId>org.springframework</groupId>
+    <artifactId>spring-webmvc</artifactId>
+    <version>5.3.27</version>
+   </dependency>
+   
+  </dependencies>
+  <build>
+    <finalName>com.studentdemo.test</finalName>
+  </build>
+</project>
+
+
+-------------------------------------------------------------------------------------

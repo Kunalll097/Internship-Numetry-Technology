@@ -1,0 +1,28 @@
+Hypertext Transfer Protocol (HTTP) :-
+
+ - foundation of the World Wide Web, and is used to load webpages using hypertext links.
+
+ - Mostly used in enterprise application it is servlet used to go from one page to another.
+   
+ - it has mainly two methods GET and POST both has its own advantages one will show data in url 
+      
+   and one will not show data in url.
+---------------------------------------------------------------------------------------------------------
+Design:-
+
+ - Understand resource naming conventions and hierarchical structuring.
+
+
+- Request and Response :-
+
+ - Study how to handle request and response formats such as JSON(Javascript object notation) 
+   and XML(eXtensible Markup Language).  
+-----------------------------------------------------------------------------------------------------------
+
+-Learn the basics of setting up projects, configuring routes/endpoints, 
+ and handling requests and responses.
+
+-Practice handling different types of requests, validating inputs, 
+ and returning appropriate responses.
+
+---------------------------------------------------------------------------------------------------------

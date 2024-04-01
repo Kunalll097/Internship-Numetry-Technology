@@ -1,0 +1,90 @@
+Demo.java
+
+package com.constructor.di;
+
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+
+public class Demo {
+ 
+	public static void main(String[] args) {
+		
+		@SuppressWarnings("resource")
+		ApplicationContext context = new ClassPathXmlApplicationContext("beans.xml");
+		Employee e1 = context.getBean("emp1",Employee.class);
+		e1.get_data();
+		e1.disp_data();
+		
+		
+		Employee e2 = context.getBean("emp2",Employee.class);
+		e2.get_data();
+		e2.disp_data();
+		}	
+	
+}
+
+
+-------------------------------------------------------------------------------------------------------------------
+
+Employee.java
+
+package com.constructor.di;
+
+public class Employee {
+
+	private int Eid;
+	private String Name;
+	private int BasicSalary; 
+	private int Gross;
+	private int Bonus;
+	
+	public Employee(int Eid, String Name, int BasicSalary) {
+		this.Eid = Eid;
+		this.Name = Name;
+		this.BasicSalary = BasicSalary;
+		this.Bonus = 5000;
+	}	
+	
+	public void get_data() {
+		Gross=(18*BasicSalary)/100+(BasicSalary+Bonus);
+	}
+	
+	public void disp_data()
+	{
+		System.out.println("----------------------------------");
+		System.out.println("Employee id :"+Eid);
+		System.out.println("Employee Name :"+Name);
+		System.out.println("Employee Basic Salary :"+BasicSalary);
+		System.out.println("Employee Gross Salary :"+Gross);
+		System.out.println("----------------------------------");
+	}
+	
+}
+
+----------------------------------------------------------------------------------------------------------------------------
+
+beans.xml
+
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
+        https://www.springframework.org/schema/beans/spring-beans.xsd">
+    
+    <bean id="emp1" class="com.constructor.di.Employee">
+    
+    <constructor-arg name="Eid" value="159"></constructor-arg>
+    <constructor-arg name="Name" value="Amit Thakur"></constructor-arg>
+    <constructor-arg name="BasicSalary" value="15000"></constructor-arg>
+    </bean>
+    
+    <bean id="emp2" class="com.constructor.di.Employee">
+    
+    <constructor-arg name="Eid" value="139"></constructor-arg>
+    <constructor-arg name="Name" value="Ravi Sharma"></constructor-arg>
+    <constructor-arg name="BasicSalary" value="25000"></constructor-arg>
+    </bean>
+    
+</beans>
+
+------------------------------------------------------------------------------------------
