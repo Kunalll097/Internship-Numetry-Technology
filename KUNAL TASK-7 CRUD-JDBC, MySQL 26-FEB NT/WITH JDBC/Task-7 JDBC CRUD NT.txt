@@ -1,0 +1,194 @@
+//---------------------------- CREATE AND INSERT QUERY WITH JDBC --------------------------------
+
+import java.util.*;
+import java.sql.*;
+
+public class Practice{
+
+   public static void main(String[] args){
+
+       Scanner si= new Scanner(System.in);
+
+       try{
+
+           System.out.println("Enter student id: ");
+           String studentid = si.nextLine();
+           System.out.println("Enter student Name: ");
+           String studentName = si.nextLine();
+           System.out.println("Enter student Address: ");
+           String studentAddress = si.nextLine();
+           System.out.println("Enter student profile Path: ");
+           String studentProfile = si.nextLine();
+
+           Class.forName("com.mysql.cj.jdbc.Driver");
+           Connection conn= DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/stud_db","root","Kunal123");
+           Statement statement=conn.createStatement();
+           String qur="INSERT INTO stud_db.studentdata (studentid,studentName,studentAddress,studentProfile)VALUES(?,?,?,?)";
+
+           PreparedStatement preparedStatement=conn.prepareStatement(qur);
+           preparedStatement.setString(1, studentid);
+           preparedStatement.setString(2,studentName);
+           preparedStatement.setString(3,studentAddress);
+           preparedStatement.setString(4,studentProfile);
+
+           int i=preparedStatement.executeUpdate();
+
+           if(i>0){
+               System.out.println("Data Inserted");
+           }
+           else{
+               System.out.println("Data is not Inserted");
+           }
+       }
+       catch(Exception e){
+           System.out.println(e);
+       }
+   }
+}
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+//-------------------------------------- SHOW AND READ QUERY WITH JDBC -------------------------------
+
+import java.sql.*;
+
+public class Demo {
+    public static void main(String[] args) {
+        String url = "jdbc:mysql://127.0.0.1:3306/stud_db";
+        String username = "root";
+        String password = "Kunal123";
+
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            Connection conn= DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/stud_db","root","Kunal123");
+            Statement statement=conn.createStatement();
+
+            ResultSet resultSet = statement.executeQuery("SELECT * FROM stud_db.studentdata");
+
+
+            while (resultSet.next()) {
+                int id = resultSet.getInt("studentid");
+                String name = resultSet.getString("studentName");
+                String studentAddress = resultSet.getString("studentAddress");
+                String studentProfile = resultSet.getString("studentProfile");
+                System.out.println("studentid: " + id + ", studentName: " + name + "  " + ", studentAddress:  " + studentAddress + "  " + ", studentProfile: " + studentProfile);
+            }
+
+            resultSet.close();
+            statement.close();
+            conn.close();
+
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+}
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------
+//---------------------------------------UPDATE QUERY WITH JDBC------------------------------------
+
+import java.util.*;
+import java.sql.*;
+
+public class Test {
+
+    public static void main(String[] args) {
+        // TODO Auto-generated method stub
+
+        Scanner si=new Scanner(System.in);
+
+        try
+        {
+
+            System.out.println("Enter student Name: ");
+            String studentName = si.nextLine();
+            System.out.println("Enter student Address: ");
+            String studentAddress = si.nextLine();
+            System.out.println("Enter student id: ");
+            String studentid = si.nextLine();
+//            System.out.println("Enter student profile Path: ");
+//            String studentProfile = si.nextLine();
+
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            Connection conn= DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/stud_db","root","Kunal123");
+            Statement statement=conn.createStatement();
+            String qur = "Update stud_db.studentdata SET studentName =?, studentAddress=? WHERE studentid=?";
+
+            PreparedStatement preparedStatement=conn.prepareStatement(qur);
+            preparedStatement.setString(1,studentName);
+            preparedStatement.setString(2,studentAddress);
+            preparedStatement.setString(3, studentid);
+//            preparedStatement.setString(4,studentProfile);
+
+            int i=preparedStatement.executeUpdate();
+
+            if(i>0)
+            {
+                System.out.println("Data Updated");
+            }
+            else {
+                System.out.println("Data is Not Updated");
+            }
+        }
+        catch(Exception err)
+        {
+            System.out.println(err);
+        }
+
+
+    }
+
+}
+
+------------------------------------------------------------------------------------------------------------------------------------------------
+
+//------------------------------- DELETE QUERY WITH JDBC ---------------------------------
+
+import java.util.*;
+import java.sql.*;
+
+public class Main {
+
+    public static void main(String[] args) {
+        // TODO Auto-generated method stub
+
+        Scanner si=new Scanner(System.in);
+
+        try
+        {
+
+            System.out.println("Enter Student id : ");
+            String studentid = si.nextLine();
+
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            Connection conn=DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/stud_db","root","Kunal123");
+            Statement stment = conn.createStatement();
+            String qur = "DELETE FROM stud_db.studentdata where studentid=?";
+
+            PreparedStatement preparedStatement = conn.prepareStatement(qur);
+            preparedStatement.setString(1, studentid);
+
+            int i=preparedStatement.executeUpdate();
+
+            if(i>0)
+            {
+                System.out.println("Data Deleted");
+            }
+            else{
+                System.out.println("Data is not Deleted");
+            }
+
+        }
+        catch(Exception err)
+        {
+            System.out.println(err);
+        }
+
+
+    }
+
+}
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------
