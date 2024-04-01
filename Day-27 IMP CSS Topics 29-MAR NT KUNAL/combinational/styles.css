@@ -1,0 +1,10 @@
+div ~ p{
+    color: orangered;
+    font-size:32px;
+    font-weight:bold;
+    margin:0px;
+    text-align:center;
+}
+div {
+    text-align:center;
+}

@@ -1,0 +1,13 @@
+.NT {
+  font-style: normal;
+  font-family: "Times New Roman";
+  font-weight: bold;
+  font-size: 40px;
+  color: #090;
+  text-align: center;
+}
+
+.student {
+  font-style: italic;
+  text-align: center;
+}

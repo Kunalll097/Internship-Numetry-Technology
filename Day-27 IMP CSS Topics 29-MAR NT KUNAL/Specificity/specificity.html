@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+ 
+<head>
+    <style type="text/css">
+        h1 {
+            background-color: pink;
+            color: brown;
+        }
+ 
+        #second {
+            background-color: black;
+            color: white;
+        }
+ 
+        .third {
+            background-color: magenta;
+            color: black;
+        }
+ 
+        #second1 {
+            color: orangered;
+        }
+ 
+        .third1 {
+            color: orange;
+        }
+    </style>
+</head>
+ 
+<body>
+    <h1 id="second" class="third">
+        ID has highest priority.
+    </h1>
+    <h1>
+        Element selectors has lowest priority.
+    </h1>
+    <h1 class="third">
+        Classes have higher priority
+        than element selectors.
+    </h1>
+ 
+    <h2 style="color: orangered;"
+        id="second1"
+        class="third1">
+        Inline CSS has highest priority.
+      </h2>
+</body>
+ 
+</html>

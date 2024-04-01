@@ -1,0 +1,11 @@
+/* Parent styles */
+.parent {
+    font-family: Arial, sans-serif;
+    color: blue;
+  }
+  
+  /* Child styles */
+  p {
+    font-size: 18px;
+  }
+  

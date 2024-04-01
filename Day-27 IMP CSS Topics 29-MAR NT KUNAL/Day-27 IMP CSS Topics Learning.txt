@@ -1,0 +1,211 @@
+CSS Selectors
+CSS Selectors targets the HTML elements on the Pages to add styles. CSS selectors select HTML elements according to their id, class, type, attribute, etc. Selectors play a crucial role in defining the appearance and layout of web pages, enhancing both aesthetics and user experience.
+
+Table of Content
+
+-CSS Selectors Types
+-Simple Selectors
+-Element Selector
+-Id Selector
+-Class Selector
+-Universal Selector
+-Group Selector
+-Attribute Selector
+-Pseudo-Class Selector
+-Pseudo-Element Selector
+
+---------------------------------------------------------------------------------------------------------------------------
+
+CSS Combinators:-
+
+CSS combinators are explaining the relationship between two selectors. CSS selectors are the patterns used to select the elements for style purposes. A CSS selector can be a simple selector or a complex selector consisting of more than one selector connected using combinators. 
+There are four types of combinators available in CSS which are discussed below: 
+
+-General Sibling selector (~)
+-Adjacent Sibling selector (+)
+-Child selector (>)
+-Descendant selector (space)
+
+General Sibling selector: The general sibling selector is used to select the element that follows the first selector element and also shares the same parent as the first selector element. This can be used to select a group of elements that share the same parent element.
+
+----------------------------------------------------------------------------------------------------------------------------
+
+CSS Selector
+CSS selectors are used to select the content you want to style. Selectors are the part of CSS rule set. CSS selectors select HTML elements according to its id, class, type, attribute etc.
+
+There are several different types of selectors in CSS.
+
+1.CSS Element Selector
+2.CSS Id Selector
+3.CSS Class Selector
+4.CSS Universal Selector
+5.CSS Group Selector
+
+---------------------------------------------------------------------------------------------------------------------------
+
+CSS element:-
+
+*element Selector
+
+The element element selector in CSS is used to select elements inside the elements i.e it combines two selectors such that elements matched by the second selector are selected if they have an ancestor element matching the first selector.
+
+-------------------------------------------------------------------------------------------------------------------------
+
+Specificity:-
+
+CSS Specificity
+CSS Specificity of the Selectors can be determined when more than one set of CSS rules applies to the same element, the browser will have to decide which specific set will be applied to the element. This set of rules that the browser follows is collectively called Specificity.
+
+CSS Specificity Rules 
+Inline CSS
+Inline CSS is a method of applying CSS styling directly within HTML elements using the “style” attribute. It has the highest specificity and will override all other selectors, including External stylesheets and Internal CSS.
+
+Internal CSS
+Internal stylesheets are a method for defining CSS styles within an HTML document’s <style> element. This styling can be used when we want to directly implement the styles within an HTML Document. The specificity of this styling depends on the CSS Selector used with the Element. For instance, if an id is used then it has the highest specificity, in comparison to the External stylesheet. For this, internal CSS will override rules defined in an external stylesheet.
+
+External CSS
+External CSS is used to style multiple HTML pages with a single style sheet. External CSS contains a separate CSS file with a .css extension. This style can be linked via the <link> tag in the HTML document. The specificity of this styling also depends on the CSS Selector used with the Element.
+
+------------------------------------------------------------------------------------------------------------------------
+
+inheritance in CSS:-
+
+How to apply concept of inheritance in CSS ?
+Inheritance is a concept that we see in our day-to-day life. Children inherit features like height, eyes, nose, etc. from their parents. Inheritance is one of the core concepts of oops language (Object Oriented Programming Language). In which we derive the properties of one class in another for a hierarchy. The class which inherits becomes a child class and from which it is taken becomes a superclass or a parent class.
+
+CSS Inheritance: In CSS inheritance, the child element will naturally inherit properties from its parent element.
+
+----------------------------------------------------------------------------------------------------------------------
+
+CSS Box model:-
+
+CSS Box Model is a Fundamental concept in CSS that governs how elements are structured and positioned on a webpage. By learning this model, you’ll create elements visually appealing that adjust seamlessly to various screen sizes. It is used to create the design and layout of web pages.
+
+In this article, we’ll learn the key components of the box model and its practical implications.
+
+What is the CSS Box Model?
+The box model in CSS is a container that contains various properties, including borders, margins, padding, and the content itself. These properties collectively determine the dimensions and spacing of an element.
+
+The CSS box model is a fundamental concept in web design that describes how elements are rendered on a web page. It consists of four main components: content, padding, border, and margin. Here's a breakdown of each component along with some CSS code to demonstrate:
+
+1.Content: This is the actual content of the HTML element, such as text, images, or other media.
+
+2.Padding: The padding is the space between the content and the element's border.
+
+3.Border: The border is a line that surrounds the padding and content.
+
+4.Margin: The margin is the space between the element's border and adjacent elements.
+
+---------------------------------------------------------------------------------------------------------------------
+
+CSS Fonts:-
+
+CSS fonts offer a range of options to style the text content within HTML elements. It gives you the ability to control different aspects of fonts, including font family, font size, font weight, font style, and more.
+
+--------------------------------------------------------------------------------------------------------------------
+
+CSS Colors:-
+
+CSS Color property is used to set the color of HTML elements. This property is used to set font color, background color, etc. The color of an element can be defined in the following ways:
+
+Built-In Color
+RGB Format
+RGBA Format
+Hexadecimal Notation
+HSL
+HSLA
+Built-In Color: These are a set of predefined colors which are used by its name. For example: red, blue, green etc.
+
+Syntax:
+
+h1 {
+    color: color-name;
+}
+
+-------------------------------------------------------------------------------------------------------------------
+
+CSS Positioning Elements:-
+
+The position property in CSS tells about the method of positioning for an element or an HTML entity and the positioning of an element can be done using the top, right, bottom, and left properties. These specify the distance of an HTML element from the edge of the viewport. 
+
+There are five different types of position properties available in CSS:
+
+-Fixed position: Any HTML element with position: fixed property will be positioned relative to the viewport. An element with fixed positioning allows it to remain in the same position even we scroll the page. We can set the position of the element using the top, right, bottom, and left.
+
+-Static: This method of positioning is set by default. If we don’t mention the method of positioning for any element, the element has the position: static method by default. By defining Static, the top, right, bottom, and left will not have any control over the element. The element will be positioned with the normal flow of the page.
+
+-Relative: An element with position: relative is positioned relatively with the other elements which are sitting on top of it. If we set its top, right, bottom, or left, other elements will not fill up the gap left by this element. An element with its position set to relative and when adjusted using top, bottom, left, and right will be positioned relative to its original position.
+
+-Absolute: An element with position: absolute will be positioned with respect to its nearest Non-static ancestor. The positioning of this element does not depend upon its siblings or the elements which are at the same level.
+
+-Sticky: Element with position: sticky and top:0 played a role between fixed & relative based on the position where it is placed. If the element is placed in the middle of the document then when the user scrolls the document, the sticky element start scrolling until it touched the top. When it touches the top, it will be fixed at the top place in spite of further scrolling. we can stick the element at the bottom, with the bottom property.
+
+--------------------------------------------------------------------------------------------------------------------
+
+CSS Units:-
+
+CSS has several different units for expressing the length and measurement. CSS units are needed to specify the measurement in stylesheet like padding:”5px”. Mainly there are two types of units in CSS.  
+
+Absolute Length
+Relative Length
+Absolute Length: It is not good for use on-screen, cause screen size varies so much depending on the device used for that page it is recommended to use for print layout and where the output medium is known. 
+
+Absolute Length Units:
+
+cm: centimeter
+
+---------------------------------------------------------------------------------------------------------------------
+
+Overflow:-
+
+CSS Overflow
+The CSS overflow controls the big content. It tells whether to clip content or to add scroll bars. The overflow contains the following property: 
+
+-visible: The content is not clipped and is visible outside the element box. 
+-Hidden: The overflow is clipped and the rest of the content is invisible.
+-Scroll: The overflow is clipped but a scrollbar is added to see the rest of the content. The scrollbar can be horizontal or vertical. 
+-Auto: It automatically adds a scrollbar whenever it is required.
+-Overflow-x and Overflow-y: This property specifies how to change the overflow of elements. x deals with horizontal edges and y deals with vertical edges. 
+
+---------------------------------------------------------------------------------------------------------------------
+
+CSS Float:-
+
+The float CSS property is used to position the elements to the left, right, of its container along with permitting the text and inline elements to wrap around it. The float property defines the flow of content in the page. The remaining elements will be part of the flow if the element is removed from the normal flow of the content. This property is ignored by the absolutely positioned elements. It can be written in a CSS file or can be directly specified in the style of an element.
+
+Syntax:-
+
+float: none|left|right|initial|inherit;
+
+Property values:
+
+-none: This is the default value & the element does not float.
+-left: Element floats on the left side of the container.
+-right: Element floats on the right side of the container.
+-initial Element will be set to its default value.
+-inherit: Element inherits floating property of its parent property.
+
+--------------------------------------------------------------------------------------------------------------------
+
+CSS Flexbox
+The flexbox or flexible box model in CSS is a one-dimensional layout model that has flexible and efficient layouts with distributed spaces among items to control their alignment structure ie., it is a layout model that provides an easy and clean way to arrange items within a container. Flexbox can be useful for creating small-scale layouts & is responsive and mobile-friendly.
+
+* Features of flexbox:
+
+-A lot of flexibility is given.
+-Arrangement & alignment of items.
+-Proper spacing
+-Order & Sequencing of items.
+-Bootstrap 4 is built on top of the flex layout.
+-Before the flexbox model, we had 4 layout modes:
+
+-Block: It is used to make sections in web pages.
+-Inline: It is used for text.
+-Table: It is used for two-dimensional table data.
+-Positioned: It is used for the explicit position of an element.
+
+* There are 2 main components of the Flexbox:-
+-Flex Container: The parent “div” which contains various divisions is called a flex container.
+-Flex Items: The items inside the container “div” are flex items.
+
+--------------------------------------------------------------------------------------------------------------------

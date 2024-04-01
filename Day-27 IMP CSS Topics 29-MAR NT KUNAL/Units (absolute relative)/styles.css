@@ -1,0 +1,26 @@
+.container {
+    margin: 20px;
+  }
+  
+  div {
+    padding: 10px;
+    border: 1px solid white;
+    margin-bottom: 10px;
+  }
+  
+  .absolute {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    background-color: orangered;
+    color: white;
+  }
+  
+  .relative {
+    position: relative;
+    top: 20px;
+    left: 20px;
+    background-color: darkcyan;
+    color: wheat;
+  }
+  
