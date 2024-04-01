@@ -1,0 +1,63 @@
+Different annotation in Spring Boot :-
+
+1.@SpringBootApplication: This annotation is a combination of @Configuration, @EnableAutoConfiguration, and @ComponentScan. It marks the main class of a Spring Boot application and enables auto-configuration and component scanning.
+
+2.@RestController: Similar to @Controller in the Spring Framework, @RestController combines @Controller and @ResponseBody. It's used to define RESTful web services, where the return value of methods is serialized directly to the HTTP response body.
+
+3.@RequestMapping: Used to map HTTP requests to handler methods in Spring MVC controllers.
+
+4.@GetMapping, @PostMapping, @PutMapping, @DeleteMapping: These annotations are shortcuts for @RequestMapping with specific HTTP methods. They're used to handle GET, POST, PUT, and DELETE requests, respectively.
+
+5.@PathVariable: Used to extract values from the URI path in Spring MVC controllers.
+
+6.@RequestParam: Used to extract parameters from the query string or form data in Spring MVC controllers.
+
+7.@Autowired: This annotation is used for automatic dependency injection. It injects beans by type.
+
+8.@Qualifier: Used in conjunction with @Autowired to specify which bean to inject when multiple beans of the same type exist.
+
+9.@Value: Used to inject values from properties files or environment variables into Spring beans.
+
+10.@ConfigurationProperties: This annotation binds and validates external configuration properties to a bean. It's commonly used to configure application properties.
+
+11.@EnableAutoConfiguration: Enables Spring Boot's auto-configuration mechanism, which automatically configures Spring beans based on classpath dependencies and properties.
+
+12.@EnableConfigurationProperties: Used to enable beans annotated with @ConfigurationProperties.
+
+13.@ConditionalOnProperty: Allows conditional configuration of beans based on the presence or value of properties.
+
+14.@Transactional: Used to mark methods or classes as transactional. It ensures that the annotated methods are executed within a transactional context.
+
+15.@Scheduled: Used to schedule tasks to run at a specific time or interval.
+
+----------------------------------------------------------------------------------------------------------------
+
+Different annotation in Spring and SpringMVC framework :-
+
+1.@Component: This annotation marks a Java class as a Spring component. Spring will automatically detect classes annotated with @Component and manage them as beans in the application context.
+
+2.@Controller: Used to mark classes as Spring MVC controllers. These classes handle HTTP requests and typically return a view.
+
+3.@Service: This annotation is used to mark classes as service beans in the Spring application context. It's often used to define business logic or transactional operations.
+
+4.@Repository: Used to mark classes as data access objects (DAOs) or repositories. It indicates that the annotated class performs database operations.
+
+5.@Autowired: This annotation is used to automatically wire beans by type. It injects dependencies into Spring beans, reducing the need for explicit configuration.
+
+6.@Qualifier: Used in conjunction with @Autowired to specify which bean to inject when multiple beans of the same type exist.
+
+7.@Configuration: This annotation is used to indicate that a class declares one or more @Bean methods. It's typically used in conjunction with @Bean to define beans in Java-based configuration.
+
+8.@RequestMapping: Used in Spring MVC to map web requests onto specific handler classes or handler methods.
+
+9.@PathVariable: This annotation is used to extract values from the URI path in Spring MVC.
+
+10.@RequestParam: Used to extract parameters from the query string or form data in Spring MVC.
+
+11.@ResponseBody: This annotation indicates that the return value of a method should be serialized directly to the HTTP response body.
+
+12.@Transactional: Used to mark methods or classes as transactional. It ensures that the annotated methods are executed within a transactional context.
+
+13.@Aspect: This annotation is used to define an aspect, a cross-cutting concern, in Spring AOP.
+
+14.@Scheduled: Used to schedule tasks to run at a specific time or interval.
