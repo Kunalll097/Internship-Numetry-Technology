@@ -1,0 +1,24 @@
+1.Set:-
+- This is the basic interface that represents a collection of unique elements.
+- Sets do not allow duplicate elements.
+
+2.HashSet:-
+- This implementation of Set uses a hash table for storing elements.
+- It does not guarantee the order of elements.
+
+3.SortedSet:-
+- This is a Set that maintains its elements in ascending order.
+- It is an interface that extends Set and adds methods for accessing the elements in sorted order.
+
+3.LinkedHashSet:-
+- This is an implementation of Set that maintains a doubly-linked list of the entries in the set.
+- It preserves the insertion order of elements, which means when you iterate through a LinkedHashSet, the elements will be returned
+  in the order they were inserted.
+
+4.NavigableSet:-
+- This is an interface that extends SortedSet and provides navigation methods for accessing elements based on their order.
+- It allows you to perform navigation operations like finding the closest element to a given value or retrieving subsets of the set.
+
+5.TreeSet:-
+- This is an implementation of NavigableSet that uses a Red-Black tree for storing elements.
+- It maintains the elements in sorted order (natural ordering or according to a specified comparator).
