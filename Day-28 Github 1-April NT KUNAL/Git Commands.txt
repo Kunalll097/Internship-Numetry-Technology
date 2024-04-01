@@ -1,0 +1,21 @@
+
+ls Downloads/
+git --version
+cd Documents/
+cd Github/
+git status
+git add -u
+git config --global user.email "Kunal978899@gmail.com"
+git config --global user.name "Kunalll097"
+git push
+git status
+ls -v
+git add *
+git commit -m "Added new files"
+git push
+git status
+git add Weekly\ Report.xlsx
+git commit -m "Added Weekly report"
+git push
+git pull
+history
