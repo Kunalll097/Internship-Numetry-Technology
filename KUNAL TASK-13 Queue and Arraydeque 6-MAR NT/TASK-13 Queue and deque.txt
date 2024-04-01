@@ -1,0 +1,18 @@
+1.Queue:-
+- A queue is a fundamental data structure in computer science that follows the First-In-First-Out (FIFO) principle.
+- In a queue, elements are added at the rear end and removed from the front end.
+- This means the element that is added first will be the one to be removed first.
+
+2.Primary Queue:-
+- A primary queue typically refers to the main queue in a system or program, often used for general purposes.
+- It operates based on the FIFO principle as described above.
+
+3.De-que:-
+- Deque (pronounced "deck") stands for Double Ended Queue, which is a versatile data structure that allows insertion and deletion
+  of elements from both the front and the rear ends. 
+- This makes it more flexible compared to a standard queue, where elements can only be added at the rear and removed from the front.
+
+4.Array deque:-
+- ArrayDeque is a specific implementation of a deque in Java. 
+- It is essentially a resizable-array implementation of the Deque interface.
+- ArrayDeque provides more efficient memory usage and faster operations compared to traditional deque implementations such as linked lists.
