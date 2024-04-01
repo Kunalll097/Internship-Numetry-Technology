@@ -1,0 +1,109 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+header, nav, section, footer {
+    padding: 20px;
+}
+
+header {
+    background-color: #f1e8e8;
+    text-align: center;
+}
+
+nav ul {
+    list-style-type: none;
+    padding: 0;
+    text-align: center;
+}
+
+nav ul li {
+    display: inline;
+    margin-right: 20px;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: #333;
+}
+
+nav ul li a:hover {
+    color: skyblue;
+}
+
+section {
+    margin-bottom: 40px;
+}
+
+#destinations {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.destination-container {
+    display: flex;
+    justify-content:space-betwee;
+    margin-bottom: 20px; 
+}
+
+.destination {
+    flex-basis: calc(50% - 10px);
+    display: flex;
+    flex-direction: column;
+}
+
+.blank-column {
+    flex-basis: 50%;
+}
+
+.destination img {
+    max-width: 100%;
+    height: auto;
+}
+
+.destination h3 {
+    margin-top: 10px;
+}
+
+.destination p {
+    margin-top: 5px;
+}
+
+.destination-text {
+    padding: 0 20px;
+}
+
+form {
+    margin-top: 20px;
+}
+
+form label, form input, form textarea, form button {
+    display: block;
+    margin-bottom: 10px;
+    width: 100%;
+}
+
+form input, form textarea {
+    padding: 10px;
+}
+
+form button {
+    background-color: #007bff;
+    color: whitesmoke;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+}
+
+form button:hover {
+    background-color: #0056b3;
+}
+
+footer {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 10px 0;
+}
