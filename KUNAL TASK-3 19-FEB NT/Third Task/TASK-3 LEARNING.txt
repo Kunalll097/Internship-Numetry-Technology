@@ -1,0 +1,344 @@
+--------------------------------------------------------------------------------------
+
+
+Q.1 What are the possible ways to create objects in JavaScript
+
+1.Object literals:
+
+const myObject = {
+  property1: value1,
+  property2: value2,
+  // more properties...
+};
+
+const person =  {
+    firstName:"Kunal",
+    lastName:"Lade", 
+     age:21
+};
+
+
+2.Constructor functions:
+
+function Person(name, age) {
+  this.name = name;
+  this.age = age;
+}
+
+const person1 = new Person('kunal', 21);
+
+
+3.ES6 Classes:
+
+class Animal {
+  constructor(name) {
+    this.name = name;
+  }
+}
+
+const dog = new Animal('Sheru');
+
+
+4.Object.create() method:
+
+const myObject = Object.create(proto);
+
+
+5.Factory functions:
+
+function createPerson(name, age) {
+  return {
+    name,
+    age,
+    greet() {
+      console.log(`Hello, my name is ${this.name} and I'm ${this.age} years old.`);
+    }
+  };
+}
+
+const person1 = createPerson('kunal', 21);
+
+const Person = { 
+    firstName : "Kunal",
+     lastName : "Lade", 
+     age : 21,
+     gender : 'male',
+};
+
+const keys = Object.keys(Person);
+
+keys.forEach(key => {
+    console.log(key, Person[key]);
+})
+
+
+-------------------------------------------------------------------------------------
+
+
+
+Q.2 What is a prototype chain
+
+In JavaScript, the prototype chain is a mechanism used to implement inheritance and property delegation. Every object in JavaScript has a prototype property, which points to another object. When you try to access a property on an object, if that property doesn't exist on the object itself, JavaScript looks for it in the prototype chain.
+
+Here's how the prototype chain works:
+
+When you try to access a property or method on an object, JavaScript first checks if that property exists directly on the object itself. If it does, JavaScript uses that property.
+
+If the property doesn't exist on the object, JavaScript looks for it in the object's prototype, which is referenced by the prototype property of the constructor function used to create the object.
+
+If the property isn't found on the prototype, JavaScript continues to search up the prototype chain. It looks for the property in the prototype's prototype, and so on, until it either finds the property or reaches the end of the prototype chain (where the prototype is null).
+
+This chain of linked objects via their prototypes is called the prototype chain.
+
+Here's an example to illustrate the concept:
+
+function Animal(name) {
+  this.name = name;
+}
+
+Animal.prototype.sound = function() {
+  return 'generate dog sound';
+};
+
+function Dog(name) {
+  Animal.call(this, name);
+}
+
+Dog.prototype = Object.create(Animal.prototype);
+Dog.prototype.constructor = Dog;
+Dog.prototype.sound = function() {
+  return 'Woof!';
+};
+
+const myDog = new Dog('Sheru');
+
+console.log(myDog.name); 
+console.log(myDog.sound()); 
+
+
+-----------------------------------------------------------------------------------------
+
+
+Q.3 What is the difference between Call, Apply and Bind
+
+
+In JavaScript, call, apply, and bind are methods that allow you to control the value of this when invoking functions. They are often used in situations where you want to execute a function in the context of a specific object.
+
+Here's a brief explanation of each:
+
+1.call: The call method is used to invoke a function with a specified this value and arguments provided individually.
+
+Syntax:
+function.call(thisArg, arg1, arg2, ...);
+
+function greet() {
+  return `Hello, ${this.name}!`;
+}
+
+const person = { name: 'John' };
+console.log(greet.call(person)); // Outputs: Hello, John!
+
+
+2.apply: The apply method is similar to call, but it accepts arguments as an array.
+
+Syntax:
+function.apply(thisArg, [argsArray]);
+
+function greet(greeting) {
+  return `${greeting}, ${this.name}!`;
+}
+
+const person = { name: 'John' };
+console.log(greet.apply(person, ['Good morning'])); // Outputs: Good morning, John!
+
+
+3.bind: The bind method returns a new function with the this value explicitly set, and any arguments provided are permanently bound to the function.
+
+Syntax:
+
+const newFunction = function.bind(thisArg, arg1, arg2, ...);
+
+function greet(greeting) {
+  return `${greeting}, ${this.name}!`;
+}
+
+const person = { name: 'John' };
+const greetPerson = greet.bind(person);
+console.log(greetPerson('Good evening')); // Outputs: Good evening, John!
+
+call and apply are used to invoke a function immediately, with call accepting arguments individually and apply accepting arguments as an array.
+bind is used to create a new function with the this value explicitly set and optionally with some arguments bound permanently. This new function can be called later.
+
+
+------------------------------------------------------------------------------------------
+
+
+Q.4 What is JSON and its common operations
+
+JSON (JavaScript Object Notation) is a lightweight data-interchange format that is easy for humans to read and write and easy for machines to parse and generate. It is based on a subset of JavaScript language syntax but is language-independent, meaning it can be used with any programming language.
+
+JSON represents data in key-value pairs, where keys are strings and values can be strings, numbers, arrays, objects, booleans, or null.
+
+Here's an example of a simple JSON object:
+
+const obj = {
+    "name": "Kunal",
+    "age": 21,
+    "isStudent": true,
+    "hobbies": ["collecting coins", "playing cricket"],
+    "address": {
+      "city": "Nashik",
+      "country": "INDIA"
+    }
+  }
+
+Common operations with JSON include:
+
+1.Serialization: Converting a JavaScript object into a JSON string. This is achieved using the JSON.stringify() method.
+
+const obj = { name: 'kunal', age: 21 };
+const jsonString = JSON.stringify(obj);
+console.log(jsonString); 
+
+2.Deserialization: Converting a JSON string into a JavaScript object. This is achieved using the JSON.parse() method.
+
+const jsonString = '{"name":"kunal","age":21}';
+const obj = JSON.parse(jsonString);
+console.log(obj);
+
+3.Accessing Data: Once parsed, you can access the data within the JSON object just like you would with any JavaScript object.
+
+console.log(obj.name); 
+
+4.Manipulating Data: You can modify the data within a JSON object just like any JavaScript object.
+
+obj.age = 40;
+console.log(obj); 
+
+5.Stringifying and Parsing Complex Data: JSON allows nesting of objects and arrays, making it suitable for representing complex data structures.
+
+const complexData = {
+    name: 'kunal',
+    friends: [
+      { name: 'Athrav', age: 22 },
+      { name: 'Deep', age: 28 }
+    ]
+  };
+  const complexJsonString = JSON.stringify(complexData);
+  console.log(complexJsonString);
+
+---------------------------------------------------------------------------------------
+
+
+Q.5 What is the purpose of the array slice method
+
+
+The slice() method in JavaScript is used to extract a section of an array and returns a new array containing the extracted elements. It doesn't modify the original array; instead, it returns a shallow copy of a portion of the array into a new array object selected from start to end (end not included) where start and end represent the index of items in that array.
+
+The slice() method takes two parameters:
+
+1.start: Optional. Zero-based index at which to start extraction. It extracts up to but does not include the element at this index. If negative, it specifies the position from the end of the array (-1 for the last element, -2 for the second to last, and so on). If omitted, slice() will start from the beginning of the array.
+
+2.end: Optional. Zero-based index before which to end extraction. slice() extracts up to, but not including, the element at this index. If negative, it specifies the position from the end of the array (-1 for the last element, -2 for the second to last, and so on). If omitted, slice() extracts through the end of the array.
+Here's an example:
+
+const fruits = ['apple', 'banana', 'cherry', 'guava', 'papaya'];
+
+const slicedFruits1 = fruits.slice(1, 3);
+console.log(slicedFruits1); 
+
+const slicedFruits2 = fruits.slice(2);
+console.log(slicedFruits2); 
+
+const slicedFruits3 = fruits.slice(-3);
+console.log(slicedFruits3); 
+
+const slicedFruits4 = fruits.slice(-3, -1);
+console.log(slicedFruits4);
+
+
+---------------------------------------------------------------------------------------
+
+
+Q.6 What is the purpose of the array splice method
+
+
+The splice() method in JavaScript is used to change the contents of an array by removing or replacing existing elements and/or adding new elements in place. Unlike the slice() method which returns a new array containing the extracted elements, splice() modifies the original array and returns an array containing the removed elements.
+
+The splice() method can take multiple parameters:
+
+1.start: The index at which to start changing the array. If greater than the length of the array, the start will be set to the length of the array. If negative, it will begin that many elements from the end of the array (with -1 being the last element).
+
+2.deleteCount: Optional. The number of elements to remove from the array. If omitted or if greater than the number of elements remaining in the array starting from start, all elements up to the end of the array will be removed.
+
+3.item1, item2, ...: Optional. Elements to add to the array. If omitted, splice() will only remove elements.
+
+Here's an example:
+
+const months = ['Jan', 'March', 'May', 'July'];
+
+months.splice(1, 1);
+console.log(months); 
+
+months.splice(1, 0, 'Feb');
+console.log(months); 
+
+months.splice(2, 1, 'June');
+console.log(months); 
+
+
+------------------------------------------------------------------------------------
+
+Q.7 What is the difference between slice and splice
+
+slice returns a piece of the array but it doesn't affect the original array. splice changes the original array by removing, replacing, or adding values and returns the affected values.
+
+1.slice():
+
+Purpose: slice() method is used to extract a shallow copy of a portion of an array into a new array object.
+Syntax: array.slice(start, end)
+
+2.splice():
+
+Purpose: splice() method is used to change the contents of an array by removing or replacing existing elements and/or adding new elements in place.
+Syntax: array.splice(start, deleteCount, item1, item2, ...)
+
+
+Consider the following simple example :
+
+const array = [1, 2, 3, 4, 5];
+array.splice(index, 1);
+array.slice(index, 1);
+
+Another Simple example :
+
+//splice
+var array=[1,2,3,4,5];
+console.log(array.splice(2)); 
+
+//slice
+var array2=[1,2,3,4,5]
+console.log(array2.slice(2));
+
+
+console.log("----after-----");
+console.log(array);
+console.log(array2);
+
+//In simple words diff. between splice and slice
+
+// splice means it cut first two elemets and 
+// print remaining based on value we insert in (array.splice(2)) 
+// and change the original array
+
+
+// slice means it cut first two elemets and 
+// print remaining based on value we insert in (array.slice(2))
+// and doesn't affect the original array
+
+// Firstly splice the array at (array.splice(2)) [1,2,3,4,5] => [3,4,5] 
+// and array become [1,2].
+// then slice at (array.slice(2)) [1,2,3,4,5] => [3,4,5] and again it will be [1,2,3,4,5].
+
+
+-------------------------------------------------------------------------------------
