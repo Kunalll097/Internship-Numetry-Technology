@@ -1,0 +1,4 @@
+Welcome Numetry technology!
+Hello guys how are you...
+Corporate World!
+Coding.....Full stack Internshipcd "c:\Users\KUNAL\OneDrive\Documents\Numetry Technology\Fifth Task\" ; if ($?) { javac File_Handling.java } ; if ($?) { java File_Handling }cd "c:\Users\KUNAL\OneDrive\Documents\Numetry Technology\Fifth Task\" ; if ($?) { javac File_Handling.java } ; if ($?) { java File_Handling }
