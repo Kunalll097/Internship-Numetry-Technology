@@ -1,0 +1,151 @@
+What are Semantic Elements?
+
+-A semantic element clearly describes its meaning to both the browser and the developer.
+
+-Examples of non-semantic elements: <div> and <span> - Tells nothing about its content.
+
+-Examples of semantic elements: <form>, <table>, and <article> - Clearly defines its content.
+
+In HTML there are some semantic elements that can be used to define different parts of a web page:  
+
+<article>
+<aside>
+<details>
+<figcaption>
+<figure>
+<footer>
+<header>
+<main>
+<mark>
+<nav>
+<section>
+<summary>
+<time>
+
+Using semantic HTML elements like <header>, <nav>, <section>, and <footer> helps convey the structure 
+and purpose of different parts of the webpage, making it easier to understand and maintain.
+
+----------------------------------------------------------------------------------------------------------------------------------------
+
+CSS Preprocessor SASS:-
+
+The SASS is the abbreviation of Syntactically Awesome Style Sheets. It is a CSS pre-processor with syntax advancements. The style sheets in the advanced syntax are processed by the program and compiled into regular CSS style sheets, which can be used in the website. It is a CSS extension that allows to use feature like variables, nesting, imports, mixins, inheritance, etc, all in a CSS-compatible syntax ie., it is compatible with all the CSS versions. 
+
+There are two types of syntax available for SASS:
+
+-SCSS(Sassy CSS): The files using this syntax use .scss extension.
+-Indented syntax (referred to as just “sass”): older syntax, Files using this syntax use .sass extension.
+
+CSS pre-processors like Sass or Less allow developers to write CSS in a more efficient and maintainable way by adding features such as variables, mixins, nesting, and more.
+
+-----------------------------------------------------------------------------------------------------------------------------------------
+
+CSS Specificity:-
+
+CSS Specificity of the Selectors can be determined when more than one set of CSS rules applies to the same element, the browser will have to decide which specific set will be applied to the element. This set of rules that the browser follows is collectively called Specificity.
+
+CSS Specificity Rules:-
+
+1)Inline CSS
+2)Internal CSS
+3)External CSS
+
+-----------------------------------------------------------------------------------------------------------------------------------------
+
+Resetting and normalizing CSS are two different approaches to standardizing the default styles applied by browsers to HTML elements.
+
+CSS Reset: A CSS reset aims to reset the styles of all HTML elements to a consistent baseline, removing any default margins, paddings, or other styles applied by browsers. This ensures a more consistent starting point for styling across different browsers.
+
+CSS (Cascading Style Sheets) is a stylesheet language for describing the presentation of an HTML or XML document (including XML dialects such as SVG, MathML or XHTML). CSS specifies how elements should appear on a screen, on paper, in speech, or in other forms of media.
+
+Resetting CSS: A CSS reset is a set of styles that you load before your other styles to remove built-in browser styles. Every browser has its own user agent stylesheet, which it employs to make unstyled websites more readable. Most browsers, for example, make links blue and visited links purple by default, add a border and padding to tables, apply various font sizes to H1, H2, H3, and practically everything, and apply a specific amount of padding to almost everything.
+
+Normalizing CSS: Normalizing CSS improves cross-browser consistency in HTML element default styling of the browser’s user agent. It’s an HTML5-friendly replacement for the standard CSS Reset.
+
+The purposes of normalizing are:
+
+-Preserve default useful browsers instead of erasing them.
+-Standardize styles for a wide variety of HTML elements.
+-Correct bugs and incoherence of common browsers.
+-Enhance usability through subtle improvements.
+-Use comments and detailed documentation to explain the code.
+
+-------------------------------------------------------------------------------------------------------------------------------------------
+
+CSS Architecture:-
+
+CSS is a simple language. Its basic purpose is to define selectors to target HTML elements and apply attributes to them, which is easy to grasp. When working on large and complex projects, though, some CSS features might be a little trickier to deal with.
+
+CSS architecture refers to the organization and structure of your CSS codebase to make it more maintainable, scalable, and easier to work with. One popular approach to CSS architecture is the BEM (Block Element Modifier) methodology.
+
+------------------------------------------------------------------------------------------------------------------------------------------
+
+SVGS:-
+
+SVG stands for Scalable Vector Graphics.
+
+SVG defines vector-based graphics in XML format.
+
+SVG graphics are scalable, and do not lose any quality if they are zoomed or resized.
+
+SVG is supported by all major browsers.
+
+We can adjust the attributes of the <circle> element to customize the appearance of the circle.
+
+-----------------------------------------------------------------------------------------------------------------------------------------
+
+Media Queries:-
+
+CSS media queries allows the styling of elements depending on the devices. It helps to create a responsive web design. It means that the view of a web page differs from system to system based on screen or media types.
+
+The breakpoints in @media specifies for what device-width size, the content is just starting to break or deform. The CSS2 rule introduced different style rules for different media types. Media queries can be used to check many things:
+
+-width and height of the viewport
+-width and height of the device
+-Orientation
+-Resolution
+
+----------------------------------------------------------------------------------------------------------------------------------------
+
+CSS Display Property CSS Position Property:-
+
+The Display property in CSS defines how the components(div, hyperlink, heading, etc) are going to be placed on the web page. 
+As the name suggests, this property is used to define the display of the different parts of a web page. 
+
+---------------------------------------------------------------------------------------------------------------------------------------
+
+CSS Frameworks:-
+
+CSS frameworks are pre-written sets of CSS rules and often accompanying HTML and JavaScript components that provide a foundation for designing and styling web pages.
+They aim to streamline and standardize the process of web development by offering reusable components, layout systems, and design patterns that can be easily integrated into projects.
+
+CSS Frameworks for Website Developers and Designers:-
+1. Bootstrap
+2. Tailwind CSS
+3. Foundation
+4. Bulma
+5. Skeleton
+
+--------------------------------------------------------------------------------------------------------------------------------------
+
+CSS Pseudo-classes
+A Pseudo class in CSS is used to define the special state of an element. It can be combined with a CSS selector to add an effect to existing elements based on their states. For Example, changing the style of an element when the user hovers over it, or when a link is visited. All of these can be done using Pseudo Classes in CSS.
+*Note that pseudo-class names are not case-sensitive.
+
+Syntax:  
+
+selector: pseudo-class{
+    property: value;
+}
+
+Pseudo Classes:-
+Pseudo-classes are keywords that can be added to selectors in CSS to target elements based on their state or position in the document structure.
+Pseudo-classes allow developers to style elements dynamically, based on user interaction or specific conditions, without the need for additional JavaScript code.
+
+--------------------------------------------------------------------------------------------------------------------------------------
+Sprites:
+Sprites are a technique used in web development to combine multiple images into a single image file. By consolidating images into a single sprite sheet,
+developers can reduce the number of HTTP requests made by the browser, which can improve website performance and loading times, 
+especially on slower network connections.
+
+--------------------------------------------------------------------------------------------------------------------------------------

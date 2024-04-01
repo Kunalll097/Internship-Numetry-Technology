@@ -1,0 +1,33 @@
+body {
+    text-align: center;
+}
+
+.container {
+    font-size: 40px;
+    font-weight: bold;
+    color: green;
+}
+
+@media screen and (max-width:800px) {
+    body {
+        text-align: center;
+        background-color: green;
+    }
+
+    .container {
+        font-size: 30px;
+        font-weight: bold;
+        color: white;
+    }
+
+    .box {
+        color: white;
+    }
+}
+
+@media screen and (max-width:500px) {
+    body {
+        text-align: center;
+        background-color: blue;
+    }
+}

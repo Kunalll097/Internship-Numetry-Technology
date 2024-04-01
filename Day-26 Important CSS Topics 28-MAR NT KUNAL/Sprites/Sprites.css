@@ -1,0 +1,29 @@
+/* Base styles */
+body {
+    font-family: Arial, sans-serif;
+  }
+  
+  .icons {
+    margin-top: 20px;
+  }
+  
+  .icon {
+    display: inline-block;
+    width: 165px;
+    height: 165px;
+    background-image: url('sprites.png'); /* URL of the sprite image */
+  }
+  
+  /* Specific icons */
+  .icon-facebook {
+    background-position: 0 0; /* Position of Facebook icon in the sprite */
+  }
+  
+  .icon-twitter {
+    background-position: -32px 0; /* Position of Twitter icon in the sprite */
+  }
+  
+  .icon-instagram {
+    background-position: -64px 0; /* Position of Instagram icon in the sprite */
+  }
+  

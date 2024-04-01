@@ -1,0 +1,10 @@
+#dl {
+    font-family: sans-serif;
+    font-size: 30px;
+    color: blue;
+    padding: 100px 350px;
+   }
+   #dl li {
+    font-size: 20px;
+    color: red;
+   }

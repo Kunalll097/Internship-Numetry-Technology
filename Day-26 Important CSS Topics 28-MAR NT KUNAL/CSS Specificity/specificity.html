@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>CSS Specificity Example</title>
+    <style>
+        p {
+            color: red;
+        }
+
+        #special p {
+            color: blue;
+        }
+
+        .important {
+            color: green;
+        }
+
+        body p {
+            color: orange;
+        }
+    </style>
+</head>
+<body>
+    <div id="special">
+        <p class="important">This is a paragraph with class "Numetry Technology".</p>
+    </div>
+    <p>This is a regular paragraph.</p>
+</body>
+</html>
