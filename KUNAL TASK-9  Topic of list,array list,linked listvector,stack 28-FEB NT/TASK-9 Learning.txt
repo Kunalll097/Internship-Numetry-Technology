@@ -1,0 +1,147 @@
+* List: A list is a basic data structure that stores a collection of elements in a sequential order. It allows for adding, 
+        accessing, and removing elements. Lists can be implemented using arrays or linked lists.
+
+* Array List:-An array list is a dynamic array implementation of the list data structure.
+              It dynamically resizes itself when elements are added or removed to 
+              accommodate the changing size requirements. It provides fast access to
+              elements using index-based access but may be inefficient for insertions 
+              or deletions in the middle. 
+            -Java ArrayList class uses a dynamic array for storing the elements. 
+             It is like an array, but there is no size limit. We can add or remove 
+             elements anytime. So, it is much more flexible than the traditional array.
+             It is found in the java.util package. It is like the Vector in C++.
+
+The ArrayList in Java can have the duplicate elements also. It implements the List interface so we can use all the methods of the List interface here. The ArrayList maintains the insertion order internally. 
+
+- How the ArrayList works :-
+The ArrayList class has a regular array inside it. When an element is added, it is placed into the array. If the array is not big enough, a new, larger array is created to replace the old one and the old one is removed.
+code :-
+
+import java.util.*;
+
+public class ArraylistExample {
+    public static void main(String[] args) {
+
+        Scanner si = new Scanner(System.in);
+        ArrayList<Integer> list = new ArrayList<>(10);
+
+        list.add(652);
+        list.add(62);
+        list.add(52);
+        list.add(65);
+        list.add(12);
+        list.add(274);
+        list.add(56);
+
+//        list.set(0, 24);
+        list.remove(3);
+
+        System.out.println(list);
+
+    }
+}
+
+------------------------------------------------------------------------------------------
+
+* Linked List: A linked list is a data structure consisting of a sequence of elements
+               where each element points to the next element in the sequence. 
+               Unlike  arrays, linked lists do not have a fixed size and can grow or 
+               shrink dynamically. They are efficient for insertions and deletions at 
+               any position but may have slower access times compared to arrays due to 
+               the need to traverse the list.
+
+- How the LinkedList works :-
+-The LinkedList stores its items in "containers." The list has a link to the first container and each container has a link to the next container in the list. To add an element to the list, the element is placed into a new container and that container is linked to one of the other containers in the list.
+
+-The LinkedList class is a collection which can contain many objects of the same type, just like the ArrayList.
+code :-
+
+class Node {
+    int data;
+    Node next;
+    public Node(int data) {
+        this.data = data;
+        this.next = null;
+    }
+}
+
+public class LinkedList {
+    Node head;
+
+    public void insert(int data) {
+        Node newNode = new Node(data);
+        newNode.next = head;
+        head = newNode;
+    }
+
+    public void display() {
+        Node temp = head;
+        while (temp != null) {
+            System.out.print(temp.data + " ");
+            temp = temp.next;
+        }
+        System.out.println();
+    }
+
+    public static void main(String[] args) {
+        LinkedList list = new LinkedList();
+        list.insert(7);
+        list.insert(8);
+        list.insert(9);
+        list.display();
+    }
+}
+
+------------------------------------------------------------------------------------------
+
+* Vector: A vector is a dynamic array similar to an array list but with some differences, notably in how it handles thread safety. Vectors are synchronized, meaning they are safe for concurrent use by multiple threads. This makes vectors slower than array lists in single-threaded environments but suitable for multi-threaded applications.
+
+- It is recommended to use the Vector class in the thread-safe implementation only. If you don't need to use the thread-safe implementation, you should use the ArrayList, the ArrayList will perform better in such case.
+
+Syntax: 
+
+public class Vector<E> extends AbstractList<E> implements List<E>, RandomAccess, Cloneable, Serializable
+
+code :-
+
+import java.util.Vector;
+
+public class vector {
+    public static void main(String[] args) {
+        Vector<Character> vector = new Vector<>();
+        
+        vector.add('P');
+        vector.add('Q');
+        vector.add('R');
+        
+        System.out.println(vector); 
+    }
+}
+
+-----------------------------------------------------------------------------------------
+
+*Stack: A stack is a specialized data structure that follows the Last In, First Out (LIFO) principle. Elements are inserted and removed from only one end of the stack, typically called the "top." Stacks are commonly used in algorithms and programming languages for tasks such as expression evaluation, backtracking, and managing function calls.
+
+-The stack data structure has the two most important operations that are push and pop. The push operation inserts an element into the stack and pop operation removes an element from the top of the stack.
+
+Declaration:
+
+public class Stack<E> extends Vector<E>
+
+code :-
+
+import java.util.Vector;
+
+public class vector {
+    public static void main(String[] args) {
+        Vector<Character> vector = new Vector<>();
+        
+        vector.add('P');
+        vector.add('Q');
+        vector.add('R');
+        
+        System.out.println(vector); 
+    }
+}
+
+------------------------------------------------------------------------------------------
