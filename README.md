@@ -1,1 +1,1 @@
-# Internship-Numetry-Technology
+# Internship-Numetry Technology
