@@ -1,0 +1,74 @@
+In JavaScript, type conversion refers to the process of converting a value from one data type to another. JavaScript provides several methods for type conversion, including implicit and explicit conversions.
+
+Implicit Type Conversion (Coercion):
+Implicit type conversion, also known as coercion, occurs when JavaScript automatically converts one data type to another during operations.
+
+Example:
+
+let num = 10; // Number
+let str = '20'; // String
+
+let result = num + str; // JavaScript implicitly converts num to a string and performs string concatenation
+console.log(result); // Output: '1020'
+
+Explicit Type Conversion:
+Explicit type conversion, also known as type casting, occurs when you manually convert a value from one data type to another using built-in functions or operators.
+
+1. String Conversion:
+You can convert values to strings using the String() function or by calling the toString() method.
+
+Example:
+
+let num = 10;
+let str = String(num); // Using String() function
+console.log(typeof str); // Output: 'string'
+
+let bool = true;
+let strBool = bool.toString(); // Using toString() method
+console.log(typeof strBool); // Output: 'string'
+
+2. Number Conversion:
+You can convert values to numbers using the Number() function or by using the unary plus operator (+).
+
+Example:
+
+let str = '10';
+let num = Number(str); // Using Number() function
+console.log(typeof num); // Output: 'number'
+
+let strFloat = '10.5';
+let floatNum = +strFloat; // Using unary plus operator
+console.log(typeof floatNum); // Output: 'number'
+
+3. Integer Conversion:
+You can convert values to integers using the parseInt() function.
+
+Example:
+
+let str = '10';
+let intNum = parseInt(str);
+console.log(typeof intNum); // Output: 'number'
+
+4. Float Conversion:
+You can convert values to floating-point numbers using the parseFloat() function.
+
+Example:
+
+let str = '10.5';
+let floatNum = parseFloat(str);
+console.log(typeof floatNum); // Output: 'number'
+
+5. Boolean Conversion:
+You can convert values to boolean using the Boolean() function or using the double negation (!!) operator.
+
+Example:
+
+let num = 0;
+let bool = Boolean(num); // Using Boolean() function
+console.log(bool); // Output: false
+
+let str = 'Hello';
+let boolStr = !!str; // Using double negation operator
+console.log(boolStr); // Output: true
+
+

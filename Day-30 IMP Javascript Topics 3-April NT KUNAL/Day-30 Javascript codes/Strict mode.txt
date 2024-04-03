@@ -1,0 +1,29 @@
+Strict mode is a feature introduced in ECMAScript 5 (ES5) that allows you to place a program or a function in a strict operating context. When strict mode is enabled, certain actions that were previously ignored by JavaScript engines or flagged as errors are now treated as errors, making debugging easier and code more secure. Here's how to enable strict mode:
+
+1.Global Strict Mode: To enable strict mode globally, you simply add the string literal "use strict"; at the beginning of a script or a function. This declaration must be the very first statement in the script or function.
+
+"use strict";
+// Your code here
+
+2.Function Strict Mode: Strict mode can also be applied to individual functions by placing the "use strict"; directive inside the function body. In this case, only the function itself and its inner functions are affected.
+
+function myFunction() {
+    "use strict";
+    // Function body in strict mode
+}
+
+When strict mode is enabled, it introduces several changes to the behavior of JavaScript:
+
+-Strict Syntax Checking: The JavaScript engine performs more stringent syntax checks, catching common coding errors and unsafe actions.
+
+-No Implicit Global Variables: Variables must be declared before use. Attempting to assign a value to an undeclared variable will result in a ReferenceError.
+
+-No Deleting Variables or Functions: Attempting to delete a variable or function will result in a SyntaxError.
+
+-No Duplicate Parameter Names: Functions cannot have duplicate parameter names. Attempting to declare multiple parameters with the same name will result in a SyntaxError.
+
+-Restricted this Keyword: In functions invoked in strict mode, this is undefined if the function is called without an explicit context (e.g., obj.method()).
+
+-Eval and Arguments Restriction: The use of eval() for evaluating code and accessing the arguments object inside functions is restricted.
+
+Enabling strict mode is generally considered good practice, as it helps catch common programming mistakes and promotes writing safer, more maintainable code. However, it's worth noting that strict mode cannot be applied retroactively to existing code without potentially causing unintended side effects, so it's best used from the beginning of a project or when writing new code.

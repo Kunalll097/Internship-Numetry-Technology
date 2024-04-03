@@ -1,0 +1,67 @@
+In JavaScript, operators are symbols that are used to perform operations on variables and values. Here's a brief overview of the main types of operators in JavaScript:
+
+1. Arithmetic Operators:- Used to perform arithmetic operations on numbers.
+
+    - Addition (+)
+    - Subtraction (-)
+    - Multiplication (*)
+    - Division (/)
+    - Modulus (%) - Returns the remainder of a division
+    - Exponentiation (**) - Raises a number to the power of another
+
+2. Assignment Operators:- Used to assign values to variables.
+
+    - Assignment (=)
+    - Addition assignment (+=)
+    - Subtraction assignment (-=)
+    - Multiplication assignment (*=)
+    - Division assignment (/=)
+    - Modulus assignment (%=)
+    - Exponentiation assignment (**=)
+
+3. Comparison Operators:- Used to compare values. They return a Boolean value (true or false) based on whether the comparison is true or false.
+
+    - Equal to (==)
+    - Not equal to (!=)
+    - Strict equal to (===) - Checks both value and type
+    - Strict not equal to (!==) - Checks both value and type
+    - Greater than (>)
+    - Less than (<)
+    - Greater than or equal to (>=)
+    - Less than or equal to (<=)
+
+4. Logical Operators:- Used to combine conditional statements.
+
+    - Logical AND (&&)
+    - Logical OR (||)
+    - Logical NOT (!)
+
+5. Unary Operators:- Operate on a single operand.
+
+    - Unary plus (+)
+    - Unary minus (-)
+    - Increment (++)
+    - Decrement (--)
+    - typeof - Returns the data type of its operand
+    - delete - Deletes an object's property
+    - void - Evaluates an expression and returns undefined
+
+6. Bitwise Operators:- Perform bitwise operations on operands.
+
+    - Bitwise AND (&)
+    - Bitwise OR (|)
+    - Bitwise XOR (^)
+    - Bitwise NOT (~)
+    - Left shift (<<)
+    - Sign-propagating right shift (>>)
+    - Zero-fill right shift (>>>)
+
+7. Ternary Operator (Conditional Operator):- A conditional operator that evaluates a condition and returns one of two expressions based on whether the condition is true or false. 
+
+    - Syntax: `condition ? expression1 : expression2`
+
+8. Comma Operator:- Evaluates each of its operands from left to right and returns the value of the last operand.
+
+    - Syntax: `expr1, expr2, expr3, ...`
+
+These are the main types of operators in JavaScript, each serving different purposes and allowing developers to manipulate data and control program flow efficiently.
