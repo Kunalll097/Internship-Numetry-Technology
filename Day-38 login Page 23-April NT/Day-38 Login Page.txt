@@ -1,0 +1,356 @@
+package com.sabedor.ic.api;
+
+import javax.validation.constraints.AssertTrue;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
+public class loginDTO {
+	
+	@NotBlank(message = "* User Name Required")
+	@Size(min = 5, max = 15,message = "User Name Must Be Between 5 to 15 chars")
+	private String un;
+	
+	@NotBlank(message = "* Password Required")
+	@Size(min=5,max =15,message = "Password Must Be Between 6 to 15 chars" )
+	private String ps;
+	
+	@AssertTrue(message = "Check and Agree To Terms And Conditions")
+	private boolean TermsandConditions;
+	
+	
+	public String getUn() {
+		return un;
+	}
+	public void setUn(String un) {
+		this.un = un;
+	}
+	public String getPs() {
+		return ps;
+	}
+	public void setPs(String ps) {
+		this.ps = ps;
+	}
+	
+	public boolean isTermsandConditions() {
+		return TermsandConditions;
+	}
+	public void setTermsandConditions(boolean termsandConditions) {
+		TermsandConditions = termsandConditions;
+	}
+	
+	
+}
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+package com.sabedor.ic.config;
+
+
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.web.servlet.config.annotation.EnableWebMvc;
+import org.springframework.web.servlet.view.InternalResourceViewResolver;
+
+
+@EnableWebMvc
+@Configuration
+@ComponentScan(basePackages ="com.sabedor.ic.controller")
+public class demoAppconfig {
+
+	@Bean
+	public InternalResourceViewResolver viewResolver()
+	{
+		InternalResourceViewResolver viewResolver=new InternalResourceViewResolver();
+		viewResolver.setPrefix("/WEB-INF/view/");
+		viewResolver.setSuffix(".jsp");
+		
+		return viewResolver;
+	}
+	
+}
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+package com.sabedor.ic.config;
+
+import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
+
+public class LCAppInitlizer extends AbstractAnnotationConfigDispatcherServletInitializer {
+
+	@Override
+	protected Class<?>[] getRootConfigClasses() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@SuppressWarnings("rawtypes")
+	@Override
+	protected Class<?>[] getServletConfigClasses() {
+		// TODO Auto-generated method stub
+		Class arr[]= {demoAppconfig.class};
+		return arr;
+	}
+
+	@Override
+	protected String[] getServletMappings() {
+		// TODO Auto-generated method stub
+		// TODO Auto-generated method stub
+				String arr[] = {"/"};                          //---> when user enters '/' then first login view will get open
+				
+				return arr;
+	}
+
+}
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+package com.sabedor.ic.controller;
+
+import javax.validation.Valid;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+import com.SabedorDAO.config.LoginDAO;
+import com.SabedorDAO.config.RegisterDAO;
+import com.sabedor.ic.api.RegisterDTO;
+import com.sabedor.ic.api.loginDTO;
+
+@Controller
+public class HomeController {
+
+	
+	@RequestMapping("/")
+	public String showLogin(Model model )
+	{
+		loginDTO obj=new loginDTO();
+		model.addAttribute("userinfo",obj);
+		return "login";
+	}
+	
+	@RequestMapping("/process-menu")
+	public String showMenu(@Valid @ModelAttribute("userinfo") loginDTO obj, BindingResult result) throws Exception
+	{
+		
+		 
+		  if(result.hasErrors())
+		  {
+			  return "login";  
+		  }
+		  else
+		  {
+			 LoginDAO obj2=new LoginDAO();
+			 
+			/* loginDTO obj1=new loginDTO();
+			 obj1.setUn(obj.getUn());
+			 obj1.setPs(obj.getPs());*/
+			 
+			   if(obj2.CheckLogin(obj))
+			   {
+				   return "Menu";
+			   }
+			   else
+			   {
+				
+				 return "login";
+			   }
+			 
+			 
+		  }
+	}
+		
+	@SuppressWarnings("unused")
+	@RequestMapping("/process-register")
+	public String showRegister(@Valid @ModelAttribute("reginfo") RegisterDTO obj, BindingResult result) throws Exception
+	{
+		 RegisterDAO obj1=new RegisterDAO();
+		
+		  if(result.hasErrors())
+		  {
+			  return "register";  
+		  }
+		  else
+		  {
+			  obj1.RegisterUser(obj);
+			  return "success";
+		  }
+		
+	}
+	
+	@RequestMapping("/showregister")
+	public String showregister(Model model)
+	{
+		RegisterDTO obj=new RegisterDTO();
+		model.addAttribute("reginfo",obj);
+		return "register";
+	}
+}
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+package com.SabedorDAO.config;
+import java.sql.*;
+
+import com.sabedor.ic.api.RegisterDTO;
+import com.sabedor.ic.api.loginDTO;
+
+@SuppressWarnings("unused")
+public class LoginDAO {
+	
+	
+        @SuppressWarnings("unused")
+		public boolean CheckLogin(loginDTO obj) throws Exception  {
+		
+    	try
+    	{
+    	 Class.forName("com.mysql.cj.jdbc.Driver");
+	     Connection conn=DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/stud_db","root","Kunal123");
+	     Statement stment = conn.createStatement();
+
+		    String qur = "SELECT * FROM registeruser WHERE UserName=? and UserPass=?";
+		        
+		        PreparedStatement preparedStatement = conn.prepareStatement(qur);
+		        preparedStatement.setString(1, obj.getUn());
+		        preparedStatement.setString(2, obj.getPs());
+		       
+		        ResultSet Rs =preparedStatement.executeQuery(); 
+		        
+		        if(Rs.next()==false)
+		        	return false;
+		        else
+		        	return true;
+	     
+    	}
+    	catch (Exception e) {
+			throw e;
+		}
+    	
+	}
+	
+
+}
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %> 
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+<style type="text/css">
+  .bt
+  {
+    color: red;
+    position: fixed;
+    text-align: left;
+    margin-left: 20px;
+  }
+</style>
+</head>
+<body>
+   <form:form action="process-menu" modelAttribute="userinfo">
+   
+      <p align="center">User Name : <form:input path="un" id="un"/>
+                                    <form:errors path="un" id="un" cssClass="bt" />
+      </p>
+      <p align="center">User Pass:  <form:password path="ps" />
+                                    <form:errors path="ps" cssClass="bt" />
+      </p>
+              <p align="center">    <input type="submit" name="login" value="Login" >
+                                    <a href="showregister">Register</a>
+      </p>
+           
+       <p align="center">Terms & Conditions :       <form:checkbox path="TermsandConditions"/>  
+                                                    <form:errors path="TermsandConditions" cssClass="bt"/>
+       </p>
+   </form:form>
+</body>
+</html>
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+  <h2>Welcome User...</h2>
+  
+ <p>Welcome :  ${userinfo.un} </p>
+  
+</body>
+</html>
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.springtest.demo</groupId>
+  <artifactId>com.validation.demo</artifactId>
+  <packaging>war</packaging>
+  <version>0.0.1-SNAPSHOT</version>
+  <name>com.validation.demo Maven Webapp</name>
+  <url>http://maven.apache.org</url>
+  
+   <properties>
+    <failOnMissingWebXml>false</failOnMissingWebXml>
+    <maven.compiler.source>1.8</maven.compiler.source>
+    <maven.compiler.target>1.8</maven.compiler.target> 
+   </properties>
+  
+   <dependencies>
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>3.8.1</version>
+      <scope>test</scope>
+    </dependency>
+        
+    <dependency>
+      <groupId>javax.servlet</groupId>
+      <artifactId>javax.servlet-api</artifactId>
+      <version>4.0.1</version>
+      <scope>provided</scope>
+   </dependency>
+    
+   <dependency>
+    <groupId>org.springframework</groupId>
+    <artifactId>spring-webmvc</artifactId>
+    <version>5.3.27</version>
+   </dependency>
+    
+    <dependency>
+      <groupId>javax.validation</groupId>
+      <artifactId>validation-api</artifactId>
+      <version>2.0.1.Final</version>
+    </dependency>
+    
+    <dependency>
+    <groupId>org.hibernate</groupId>
+    <artifactId>hibernate-validator</artifactId>
+    <version>6.0.0.Final</version>
+    </dependency>
+    
+   <dependency>
+        <groupId>mysql</groupId>
+        <artifactId>mysql-connector-java</artifactId>
+        <version>8.0.31</version>
+    </dependency>
+
+  </dependencies>
+  <build>
+    <finalName>com.validation.demo</finalName>
+   </build>
+   </project>
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------
